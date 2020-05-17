@@ -1,1 +1,4 @@
 node_modules
+
+## Adding the vscode sutffs on gitignore ##
+.vscode/
