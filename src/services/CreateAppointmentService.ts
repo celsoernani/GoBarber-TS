@@ -2,6 +2,7 @@ import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 import Appointment from '../models/Appointment';
 import AppointmentRepository from '../repositories/AppointmentsRepository';
+import AppError from '../errors/AppError';
 
 interface Request {
   provider_id: string;
@@ -18,7 +19,7 @@ class CreateAppointmentService {
     );
 
     if (appointmentInSameDate) {
-      throw Error('Horário já reservado');
+      throw new AppError('Horário já reservado');
     }
 
     const appointment = appointmentRepository.create({
