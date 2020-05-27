@@ -20,11 +20,11 @@ class CreateAuthenticateUserService {
     const userRepository = getRepository(User);
     const user = await userRepository.findOne({ where: { email } });
     if (!user) {
-      throw new AppError('Email ou senha incorreta');
+      throw new AppError('Email ou senha incorreta', 401);
     }
     const passwordMatched = await compare(password, user.password);
     if (!passwordMatched) {
-      throw new AppError('Email ou senha incorreta');
+      throw new AppError('Email ou senha incorreta', 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;
