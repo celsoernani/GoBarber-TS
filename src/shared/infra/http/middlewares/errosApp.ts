@@ -5,7 +5,7 @@ export default function errosApp(
   err: Error,
   resquest: Request,
   response: Response,
-  next: NextFunction,
+  _: NextFunction,
 ): Response {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
